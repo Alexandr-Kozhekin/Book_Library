@@ -12,6 +12,7 @@ import servis.UserInterface.GetBookUI.CountAllBooksUIAction;
 import servis.UserInterface.GetBookUI.GetAuthorToBooksMapUIAction;
 import servis.UserInterface.GetBookUI.GetEachAuthorBookCountUIAction;
 import servis.UserInterface.SaveBookUI.SaveBookUIAction;
+import servis.UserInterface.SearchByCriteriaUI.SearchCriteriaUIAction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,20 +28,22 @@ public class BookLibrary {
 
         menuNumberToActionMap = new HashMap();
         menuNumberToActionMap.put(1, new SaveBookUIAction(bookDatabase));
-        menuNumberToActionMap.put(2, new FindByIdUIAction(bookDatabase));
-        menuNumberToActionMap.put(3, new FindByAuthorUIAction(bookDatabase));
-        menuNumberToActionMap.put(4, new FindByTitleUIAction(bookDatabase));
-        menuNumberToActionMap.put(5, new FindUniqueAuthorsUIAction(bookDatabase));
-        menuNumberToActionMap.put(6, new FindUniqueTitlesUIAction(bookDatabase));
-        menuNumberToActionMap.put(7, new FindUniqueBooksUIAction(bookDatabase));
-        menuNumberToActionMap.put(8, new ContainsBookUIAction(bookDatabase));
-        menuNumberToActionMap.put(9, new CountAllBooksUIAction(bookDatabase));
-        menuNumberToActionMap.put(10, new GetAuthorToBooksMapUIAction(bookDatabase));
-        menuNumberToActionMap.put(11, new GetEachAuthorBookCountUIAction(bookDatabase));
-        menuNumberToActionMap.put(12, new DeleteByIdUIAction(bookDatabase));
-        menuNumberToActionMap.put(13, new DeleteByAuthorUIAction(bookDatabase));
-        menuNumberToActionMap.put(14, new DeleteByTitleUIAction(bookDatabase));
-        menuNumberToActionMap.put(15, new DeleteBookByBookUIAction(bookDatabase));
+        menuNumberToActionMap.put(2, new SearchCriteriaUIAction(bookDatabase));
+        menuNumberToActionMap.put(3, new FindByIdUIAction(bookDatabase));
+        menuNumberToActionMap.put(4, new FindByAuthorUIAction(bookDatabase));
+        menuNumberToActionMap.put(5, new FindByTitleUIAction(bookDatabase));
+        menuNumberToActionMap.put(6, new FindByYearOfIssueUIAction(bookDatabase));
+        menuNumberToActionMap.put(7, new FindUniqueAuthorsUIAction(bookDatabase));
+        menuNumberToActionMap.put(8, new FindUniqueTitlesUIAction(bookDatabase));
+        menuNumberToActionMap.put(9, new FindUniqueBooksUIAction(bookDatabase));
+        menuNumberToActionMap.put(10, new ContainsBookUIAction(bookDatabase));
+        menuNumberToActionMap.put(11, new CountAllBooksUIAction(bookDatabase));
+        menuNumberToActionMap.put(12, new GetAuthorToBooksMapUIAction(bookDatabase));
+        menuNumberToActionMap.put(13, new GetEachAuthorBookCountUIAction(bookDatabase));
+        menuNumberToActionMap.put(14, new DeleteByIdUIAction(bookDatabase));
+        menuNumberToActionMap.put(15, new DeleteByAuthorUIAction(bookDatabase));
+        menuNumberToActionMap.put(16, new DeleteByTitleUIAction(bookDatabase));
+        menuNumberToActionMap.put(17, new DeleteBookByBookUIAction(bookDatabase));
 
     }
 

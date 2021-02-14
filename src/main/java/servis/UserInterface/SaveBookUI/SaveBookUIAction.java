@@ -29,7 +29,7 @@ public class SaveBookUIAction implements UIAction {
         System.out.println("Сохранение книги! ");
 
         System.out.println("__________________________________________________________________________________");
-        System.out.println("Введите имя автора книги: ");
+        System.out.println("Введите Имя автора книги: ");
 
         authorBook = scanner.nextLine();
 

@@ -1,5 +1,6 @@
 
 import org.junit.Test;
+import servis.BookServis.BookDatabase;
 import servis.BookServis.BookDatabaseImpl;
 import bean.Book;
 import servis.BookServis.UniqueWordFinder;
@@ -125,6 +126,24 @@ public class BookTest {
         actualBookTitleList.add(book);
 
         assertEquals(actualBookTitleList, expectedBookTitleList);
+    }
+
+    @Test
+    public void findByYearOfIssueTest() {
+
+        BookDatabase bookDatabase = new BookDatabaseImpl();
+
+        Book book = new Book("A1", "T1", "1998");
+
+        bookDatabase.save(book);
+
+        List<Book> expected = new ArrayList<>(bookDatabase.findByYears("1998"));
+
+        List<Book> actual = new ArrayList<>();
+
+        actual.add(book);
+
+        assertEquals(expected, actual);
     }
 
     @Test

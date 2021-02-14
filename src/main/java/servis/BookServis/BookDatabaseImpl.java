@@ -1,8 +1,7 @@
 package servis.BookServis;
 
 import bean.Book;
-import servis.SearchCriteriaServis.SearchCriteria;
-import servis.SearchCriteriaServis.TitleSearchCriteria;
+import servis.SearchCriteriaServis.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -98,6 +97,15 @@ public class BookDatabaseImpl implements BookDatabase {
     }
 
     @Override
+    public List<Book> findByYears(String years){
+
+        return books.stream().
+                filter(book -> book.getYearOfIssue().equals(years)).
+                collect(Collectors.toList());
+
+    }
+
+    @Override
     public int countAllBooks() {
 
         return books.size();
@@ -141,16 +149,19 @@ public class BookDatabaseImpl implements BookDatabase {
     @Override
     public List<Book> find(SearchCriteria searchCriteria) {
 
-        List<Book> findBooks = new ArrayList<>();
+        List<Book> findBook = new ArrayList<>();
 
-        for (int i = 0; i < books.size(); i++) {
+        for (Book book : books){
 
-            if (searchCriteria.equals(new TitleSearchCriteria(books.get(i).getTitle()))) {
-                findBooks = findByTitle(books.get(i).getTitle());
+            if (searchCriteria.match(book)){
+
+                findBook.add(book);
+
             }
-
         }
-        return findBooks;
+
+        return findBook;
+
     }
 
     @Override

@@ -22,6 +22,8 @@ public interface BookDatabase {
 
     List<Book> findByTitle(String title);
 
+    List<Book> findByYears(String years);
+
     int countAllBooks();
 
     void deleteByAuthor(String author);
