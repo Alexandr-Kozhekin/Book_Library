@@ -5,7 +5,6 @@ import servis.BookServis.BookDatabase;
 import servis.UserInterface.UIAction;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
