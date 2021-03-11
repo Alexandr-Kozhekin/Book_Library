@@ -4,11 +4,18 @@ import bean.Book;
 import servis.BookServis.BookDatabase;
 import servis.UserInterface.UIAction;
 
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
+
+import static application.BookLibraryApplication.getConnection;
 
 public class SaveBookUIAction implements UIAction {
 
     private BookDatabase bookDatabase;
+//    private Statement statement;
 
     public SaveBookUIAction(BookDatabase bookDatabase) {
 
@@ -43,9 +50,25 @@ public class SaveBookUIAction implements UIAction {
 
         yearOfIssueBook = scanner.nextLine();
 //ДОРАБОТАТЬ!!!!
-        if (titleBook != "" || authorBook !="" || yearOfIssueBook != ""){
+        if (titleBook != "" || authorBook != "" || yearOfIssueBook != ""){
 
             bookDatabase.save(new Book(authorBook, titleBook, yearOfIssueBook));
+
+            try {
+
+                Statement statement = getConnection().createStatement();
+
+                statement.executeUpdate("INSERT Books(AuthorBook, TittleBook, YearOfIssueBook)"
+                                + " VALUES " +
+                                "(" + "'" + authorBook + "', "
+                                + "'" + titleBook + "', "
+                                + "'" +  yearOfIssueBook +"'" +")");
+
+            } catch (SQLException | IOException throwables) {
+
+                throwables.printStackTrace();
+
+            }
 
             System.out.println("__________________________________________________________________________________");
             System.out.println("Книга сохранена!" + "\n" + bookDatabase.findByAuthor(authorBook));
