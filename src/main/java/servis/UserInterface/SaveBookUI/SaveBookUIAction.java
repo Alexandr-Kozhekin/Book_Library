@@ -14,7 +14,6 @@ import static application.BookLibraryApplication.getConnection;
 public class SaveBookUIAction implements UIAction {
 
     private BookDatabase bookDatabase;
-//    private Statement statement;
 
     public SaveBookUIAction(BookDatabase bookDatabase) {
 
