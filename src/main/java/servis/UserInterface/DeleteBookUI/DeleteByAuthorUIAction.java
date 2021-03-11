@@ -1,6 +1,5 @@
 package servis.UserInterface.DeleteBookUI;
 
-import bean.Book;
 import servis.BookServis.BookDatabase;
 import servis.UserInterface.UIAction;
 
