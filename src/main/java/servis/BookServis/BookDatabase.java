@@ -30,7 +30,7 @@ public interface BookDatabase {
 
     void deleteByTitle(String title);
 
-    List<Book> find(SearchCriteria searchCriteria); //доделать
+    List<Book> find(SearchCriteria searchCriteria);
 
     Set<String> findUniqueAuthors();
 

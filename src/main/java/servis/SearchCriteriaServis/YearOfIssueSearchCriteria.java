@@ -4,7 +4,7 @@ import bean.Book;
 
 public class YearOfIssueSearchCriteria implements SearchCriteria {
 
-    private String yearOfIssueToSearch;
+    private final String yearOfIssueToSearch;
 
     public YearOfIssueSearchCriteria(String yearOfIssueToSearch) {
 
@@ -15,15 +15,7 @@ public class YearOfIssueSearchCriteria implements SearchCriteria {
     @Override
     public boolean match(Book book) {
 
-        if(book.getYearOfIssue().equals(this.yearOfIssueToSearch)){
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return book.getYearOfIssue().equals(this.yearOfIssueToSearch);
 
     }
 }

@@ -4,8 +4,8 @@ import bean.Book;
 
 public class OrSearchCriteria implements SearchCriteria {
 
-    private SearchCriteria leftCondition;
-    private SearchCriteria rightCondition;
+    private final SearchCriteria leftCondition;
+    private final SearchCriteria rightCondition;
 
     public OrSearchCriteria(SearchCriteria leftCondition,
                             SearchCriteria rightCondition) {
@@ -16,15 +16,7 @@ public class OrSearchCriteria implements SearchCriteria {
     @Override
     public boolean match(Book book) {
 
-        if (leftCondition.match(book) || rightCondition.match(book)) {
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return leftCondition.match(book) || rightCondition.match(book);
 
     }
 }

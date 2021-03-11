@@ -22,14 +22,12 @@ public class BookDatabaseImpl implements BookDatabase {
 
             int index = bookID.size() + 1;
             book.setId((long) index);
-
         }
 
         bookID.add(book.getId());
         books.add(book);
 
         return book.getId();
-
     }
 
     @Override
@@ -52,7 +50,6 @@ public class BookDatabaseImpl implements BookDatabase {
         } else {
 
             return false;
-
         }
     }
 
@@ -69,7 +66,6 @@ public class BookDatabaseImpl implements BookDatabase {
         } else {
 
             return false;
-
         }
     }
 
@@ -77,7 +73,6 @@ public class BookDatabaseImpl implements BookDatabase {
     public Optional<Book> findById(Long bookId) {
 
         return !books.isEmpty() ? Optional.of(books.get(Math.toIntExact(bookId) - 1)) : Optional.empty();
-
     }
 
     @Override
@@ -102,14 +97,12 @@ public class BookDatabaseImpl implements BookDatabase {
         return books.stream().
                 filter(book -> book.getYearOfIssue().equals(years)).
                 collect(Collectors.toList());
-
     }
 
     @Override
     public int countAllBooks() {
 
         return books.size();
-
     }
 
     @Override
@@ -161,7 +154,6 @@ public class BookDatabaseImpl implements BookDatabase {
         }
 
         return findBook;
-
     }
 
     @Override
@@ -170,7 +162,6 @@ public class BookDatabaseImpl implements BookDatabase {
         return books.stream().
                 map(Book::getAuthor).
                 collect(Collectors.toCollection(HashSet::new));
-
     }
 
     @Override
@@ -179,14 +170,12 @@ public class BookDatabaseImpl implements BookDatabase {
         return books.stream().
                 map(Book::getTitle).
                 collect(Collectors.toCollection(HashSet::new));
-
     }
 
     @Override
     public Set<Book> findUniqueBooks() {
 
         return new HashSet<>(books);
-
     }
 
     @Override
@@ -199,7 +188,6 @@ public class BookDatabaseImpl implements BookDatabase {
         } else {
 
             return false;
-
         }
     }
 
@@ -221,22 +209,21 @@ public class BookDatabaseImpl implements BookDatabase {
     public Map<String, Integer> getEachAuthorBookCount() {
 
         Map<String, Integer> bookMap = new HashMap<>();
-        //уникальные авторы
+
         Set<String> uniqueAuthors = findUniqueAuthors();
-        //получение упорядоченого списка авторов для метода findByAuthor
+
         List<String> uniqueAuthorList = new ArrayList<>(uniqueAuthors);
 
         for (int i = 0; i < uniqueAuthors.size(); i++){
-            //получения уникальных книг авторов
+
             Set<Book> uniqueBook = new HashSet<>(findByAuthor(uniqueAuthorList.get(i)));
-            //вставка в Мап уникальных авторов и количество уникальных книг авторов
+
             bookMap.put(uniqueAuthorList.get(i), uniqueBook.size());
 
         }
-//профит
+
         return bookMap;
     }
-
 }
 
 

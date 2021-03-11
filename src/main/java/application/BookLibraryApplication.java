@@ -6,8 +6,27 @@ import java.sql.*;
 import java.nio.file.*;
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class BookLibraryApplication {
+
+    static Logger LOGGER;
+
+    static {
+
+        try (FileInputStream ins = new FileInputStream("/Users/alexandrkozhekin/Documents/IntaliIDEA/Book_Library/log.config")) {
+
+            LogManager.getLogManager().readConfiguration(ins);
+            LOGGER = Logger.getLogger(BookLibraryApplication.class.getName());
+
+        } catch (Exception ignore) {
+
+            ignore.printStackTrace();
+
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -26,14 +45,13 @@ public class BookLibraryApplication {
                 // создание таблицы
                 statement.executeUpdate(sqlCommand);
 
-                System.out.println("Connection to Store DB succesfull!");
+                LOGGER.log(Level.INFO,"Connection to Store DB successful!");
 
             }
 
         } catch(Exception ex) {
 
-            System.out.println("Connection failed...");
-            System.out.println(ex);
+            LOGGER.log(Level.WARNING, "Connection failed...", ex);
 
         }
 

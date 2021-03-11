@@ -4,7 +4,7 @@ import bean.Book;
 
 public class AuthorSearchCriteria implements SearchCriteria {
 
-    private String authorToSearch;
+    private final String authorToSearch;
 
     public AuthorSearchCriteria(String authorToSearch) {
 
@@ -15,15 +15,7 @@ public class AuthorSearchCriteria implements SearchCriteria {
     @Override
     public boolean match(Book book) {
 
-        if(book.getAuthor().equals(this.authorToSearch)){
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return book.getAuthor().equals(this.authorToSearch);
 
     }
 }

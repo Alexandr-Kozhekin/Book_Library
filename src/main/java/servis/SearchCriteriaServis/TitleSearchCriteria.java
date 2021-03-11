@@ -4,7 +4,7 @@ import bean.Book;
 
 public class TitleSearchCriteria implements SearchCriteria {
 
-    private String titleToSearch;
+    private final String titleToSearch;
 
     public TitleSearchCriteria(String titleToSearch) {
 
@@ -15,15 +15,7 @@ public class TitleSearchCriteria implements SearchCriteria {
     @Override
     public boolean match(Book book) {
 
-        if(book.getTitle().equals(this.titleToSearch)) {
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return book.getTitle().equals(this.titleToSearch);
 
     }
 }

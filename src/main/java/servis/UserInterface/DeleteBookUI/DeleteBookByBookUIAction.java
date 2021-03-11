@@ -1,10 +1,7 @@
 package servis.UserInterface.DeleteBookUI;
 
-import bean.Book;
 import servis.BookServis.BookDatabase;
 import servis.UserInterface.UIAction;
-
-import java.io.IOException;
 import java.util.Scanner;
 
 public class DeleteBookByBookUIAction implements UIAction {
@@ -50,7 +47,7 @@ public class DeleteBookByBookUIAction implements UIAction {
             choice = scanner1.nextLine();
 
             if (choice.equalsIgnoreCase(makeChoiceYes)) {
-//Возмодно спорный момент реализации
+//Возможно спорный момент реализации
                 boolean deleteBook = bookDatabase.deleteBook(bookDatabase.findByAuthor(authorBook).get(0));
 
                 if (deleteBook == true && titleBook != "" || authorBook != "") {
