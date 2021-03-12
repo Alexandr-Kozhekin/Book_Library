@@ -50,7 +50,7 @@ public class DeleteBookByBookUIAction implements UIAction {
 //Возможно спорный момент реализации
                 boolean deleteBook = bookDatabase.deleteBook(bookDatabase.findByAuthor(authorBook).get(0));
 
-                if (deleteBook == true && titleBook != "" || authorBook != "") {
+                if (deleteBook && titleBook != "" || authorBook != "") {
 
                     System.out.println("__________________________________________________________________________________");
                     System.out.println("Книга удалена!" + deleteBook);

@@ -3,8 +3,13 @@ package servis.BookServis;
 import bean.Book;
 import servis.SearchCriteriaServis.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static application.BookLibraryApplication.getConnection;
 
 public class BookDatabaseImpl implements BookDatabase {
 
@@ -27,6 +32,20 @@ public class BookDatabaseImpl implements BookDatabase {
         bookID.add(book.getId());
         books.add(book);
 
+        try (Statement statement = getConnection().createStatement()) {
+
+            statement.executeUpdate("INSERT Books(AuthorBook, TittleBook, YearOfIssueBook)"
+                    + " VALUES " +
+                    "(" + "'" + book.getAuthor() + "', "
+                    + "'" + book.getTitle() + "', "
+                    + "'" +  book.getYearOfIssue() +"'" +")");
+
+        } catch (SQLException | IOException throwables) {
+
+            throwables.printStackTrace();
+
+        }
+
         return book.getId();
     }
 
@@ -42,6 +61,15 @@ public class BookDatabaseImpl implements BookDatabase {
 
                     books.remove(i);
 
+                    try (Statement statement = getConnection().createStatement()) {
+
+                        statement.executeUpdate("DELETE FROM Books WHERE Id=" + i++ + ";" );
+
+                    } catch (SQLException | IOException throwables) {
+
+                        throwables.printStackTrace();
+
+                    }
                 }
             }
 

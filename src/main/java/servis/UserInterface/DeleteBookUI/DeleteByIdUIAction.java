@@ -46,7 +46,7 @@ public class DeleteByIdUIAction implements UIAction {
 
                 boolean deleteBook = bookDatabase.deleteBook(bookID);
 
-                if (deleteBook == true) {
+                if (deleteBook) {
 
                     System.out.println("__________________________________________________________________________________");
                     System.out.println("Книга удалена!");

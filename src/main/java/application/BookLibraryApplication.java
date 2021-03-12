@@ -47,6 +47,9 @@ public class BookLibraryApplication {
 
                 LOGGER.log(Level.INFO,"Connection to Store DB successful!");
 
+                BookLibrary bookLibrary = new BookLibrary();
+                bookLibrary.run();
+
             }
 
         } catch(Exception ex) {
@@ -54,10 +57,6 @@ public class BookLibraryApplication {
             LOGGER.log(Level.WARNING, "Connection failed...", ex);
 
         }
-
-        BookLibrary bookLibrary = new BookLibrary();
-        bookLibrary.run();
-
     }
 
     public static Connection getConnection() throws SQLException, IOException {
