@@ -29,21 +29,21 @@ public class BookDatabaseImpl implements BookDatabase {
             book.setId((long) index);
         }
 
-        bookID.add(book.getId());
-        books.add(book);
-
         try (Statement statement = getConnection().createStatement()) {
 
-            statement.executeUpdate("INSERT Books(AuthorBook, TittleBook, YearOfIssueBook)"
+            bookID.add(book.getId());
+            books.add(book);
+
+            statement.executeUpdate("INSERT Books(Id, AuthorBook, TittleBook, YearOfIssueBook)"
                     + " VALUES " +
-                    "(" + "'" + book.getAuthor() + "', "
+                    "(" + "'" + book.getId() + "', "
+                    + "'" + book.getAuthor() + "', "
                     + "'" + book.getTitle() + "', "
                     + "'" +  book.getYearOfIssue() +"'" +")");
 
         } catch (SQLException | IOException throwables) {
 
             throwables.printStackTrace();
-
         }
 
         return book.getId();
@@ -57,13 +57,14 @@ public class BookDatabaseImpl implements BookDatabase {
             bookID.remove(bookId);
 
             for (int i = 0; i < books.size(); i++) {
+
                 if (books.get(i).getId().equals(bookId)) {
 
                     books.remove(i);
 
                     try (Statement statement = getConnection().createStatement()) {
 
-                        statement.executeUpdate("DELETE FROM Books WHERE Id=" + i++ + ";" );
+                        statement.executeUpdate("DELETE FROM Books WHERE Id=" + bookId + ";");
 
                     } catch (SQLException | IOException throwables) {
 
@@ -88,6 +89,16 @@ public class BookDatabaseImpl implements BookDatabase {
 
             bookID.remove(book.getId());
             books.remove(book);
+
+            try (Statement statement = getConnection().createStatement()) {
+
+                statement.executeUpdate("DELETE FROM Books WHERE Id=" + book.getId() + ";");
+
+            } catch (SQLException | IOException throwables) {
+
+                throwables.printStackTrace();
+
+            }
 
             return true;
 
@@ -142,6 +153,16 @@ public class BookDatabaseImpl implements BookDatabase {
 
                 deleteBook(books.get(i));
 
+                try (Statement statement = getConnection().createStatement()) {
+
+                    statement.executeUpdate("DELETE FROM Books WHERE AuthorBook=" + "'" + author + "'" + ";");
+
+                } catch (SQLException | IOException throwables) {
+
+                    throwables.printStackTrace();
+
+                }
+
             } else {
 
                 i++;
@@ -158,6 +179,16 @@ public class BookDatabaseImpl implements BookDatabase {
             if (books.get(Math.toIntExact(i)).getTitle().equals(title)) {
 
                 deleteBook(books.get(i));
+
+                try (Statement statement = getConnection().createStatement()) {
+
+                    statement.executeUpdate("DELETE FROM Books WHERE TittleBook=" + "'" + title + "'" + ";");
+
+                } catch (SQLException | IOException throwables) {
+
+                    throwables.printStackTrace();
+
+                }
 
             } else {
 

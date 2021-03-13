@@ -34,27 +34,29 @@ public class BookLibraryApplication {
 
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 
-            String sqlCommand = "CREATE TABLE Books (Id INT PRIMARY KEY AUTO_INCREMENT, " +
+            String sqlCommand = "CREATE TABLE Books (Id INT PRIMARY KEY, " +
                     "AuthorBook VARCHAR(20), " +
                     "TittleBook VARCHAR(20), " +
                     "YearOfIssueBook VARCHAR(20))";
 
-            try (Connection connection = getConnection()){
+            Connection connection = getConnection();
 
-                Statement statement = connection.createStatement();
-                // создание таблицы
-                statement.executeUpdate(sqlCommand);
+            Statement statement = connection.createStatement();
+            // создание таблицы
+            statement.executeUpdate(sqlCommand);
 
                 LOGGER.log(Level.INFO,"Connection to Store DB successful!");
 
                 BookLibrary bookLibrary = new BookLibrary();
                 bookLibrary.run();
 
-            }
-
         } catch(Exception ex) {
 
             LOGGER.log(Level.WARNING, "Connection failed...", ex);
+
+        } finally {
+
+
 
         }
     }
